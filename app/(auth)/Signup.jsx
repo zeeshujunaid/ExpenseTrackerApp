@@ -127,7 +127,7 @@ export default function Signup() {
 
         {/* Sign Up Button */}
         <TouchableOpacity
-          onPress={() => router.push("/CreateProfile")}
+          onPress={() => router.push("(tabs)/Homescreen")}
           style={{
             backgroundColor: "#ffffffff",
             paddingVertical: 15,

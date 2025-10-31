@@ -8,6 +8,11 @@ export default function Layout() {
       <Stack screenOptions={{ headerShown: false }} initialRouteName="index">
         <Stack.Screen name="(auth)/Login" options={{ headerShown: false }} />
         <Stack.Screen name="(auth)/Signup" options={{ headerShown: false }} />
+        <Stack.Screen name="(tabs)/Homescreen" options={{ headerShown: false }} />
+        <Stack.Screen name="(tabs)/IncomeList" options={{ headerShown: false }} />
+        <Stack.Screen name="(tabs)/ExpenseList" options={{ headerShown: false }} />
+        <Stack.Screen name="(tabs)/Profilescreen" options={{ headerShown: false }} />
+
       </Stack>
       <Toast />
     </GestureHandlerRootView>
