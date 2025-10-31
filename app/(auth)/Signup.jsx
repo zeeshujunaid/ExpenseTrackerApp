@@ -112,20 +112,14 @@ export default function Signup() {
           <View
             style={{
               flexDirection: "row",
-              justifyContent: "space-between",
+              justifyContent: "flex-end",
               marginTop: 12,
               marginBottom: 30,
             }}
           >
             <TouchableOpacity onPress={() => router.push("/Login")}>
-              <Text style={{ color: "#FF4D4D", fontSize: 13 }}>
-                Already have an account?
-              </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity>
               <Text style={{ color: "#4c9efa", fontSize: 13 }}>
-                Forgot Password?
+                Already have an account?
               </Text>
             </TouchableOpacity>
           </View>

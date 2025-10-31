@@ -102,13 +102,13 @@ export default function Login() {
             }}
           >
             <TouchableOpacity onPress={() => router.push("/Signup")}>
-              <Text style={{ color: "#FF4D4D", fontSize: 13 }}>
+              <Text style={{ color: "#4c9efa", fontSize: 13 }}>
                 Don’t have an account?
               </Text>
             </TouchableOpacity>
 
             <TouchableOpacity>
-              <Text style={{ color: "#4c9efa", fontSize: 13 }}>
+              <Text style={{ color: "#FF4D4D", fontSize: 13 }}>
                 Forgot Password?
               </Text>
             </TouchableOpacity>
