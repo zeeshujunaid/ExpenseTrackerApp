@@ -6,6 +6,7 @@ import {
   TextInput,
   KeyboardAvoidingView,
   Platform,
+  StatusBar,
   ScrollView,
 } from "react-native";
 import { useRouter } from "expo-router";
@@ -18,6 +19,7 @@ export default function Signup() {
       style={{ flex: 1, backgroundColor: "#fff" }}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
+        <StatusBar hidden/>
       <ScrollView
         contentContainerStyle={{
           flexGrow: 1,
@@ -44,7 +46,7 @@ export default function Signup() {
 
         {/* Welcome Section */}
         <View style={{ alignItems: "center", marginBottom: 30 }}>
-          <Text style={{ fontSize: 28, fontWeight: "700", color: "#111" }}>
+          <Text style={{ fontSize: 32, fontWeight: "700", color: "#97723d" }}>
             Welcome Back
           </Text>
           <Text style={{ fontSize: 14, color: "#777", marginTop: 6 }}>
@@ -54,6 +56,23 @@ export default function Signup() {
 
         {/* Form Section */}
         <View style={{ width: "85%" }}>
+          <Text style={{ fontSize: 16, color: "#000", marginBottom: 6 }}>
+            Name
+          </Text>
+          <TextInput
+            placeholder="Enter your Name"
+            keyboardType="name"
+            autoCapitalize="none"
+            style={{
+              borderWidth: 1,
+              borderColor: "#ddd",
+              borderRadius: 12,
+              padding: 14,
+              fontSize: 16,
+              backgroundColor: "#fafafa",
+              marginBottom: 18,
+            }}
+          />
           <Text style={{ fontSize: 16, color: "#000", marginBottom: 6 }}>
             Email
           </Text>
@@ -89,7 +108,7 @@ export default function Signup() {
             }}
           />
 
-          {/* Forgot & Signup Links */}
+          {/* Forgot & Signin Links */}
           <View
             style={{
               flexDirection: "row",
@@ -112,27 +131,27 @@ export default function Signup() {
           </View>
         </View>
 
-        {/* Sign In Button */}
+        {/* Sign Up Button */}
         <TouchableOpacity
-          onPress={() => console.log("Sign In pressed")}
+          onPress={() => router.push("/CreateProfile")}
           style={{
             backgroundColor: "#ffffffff",
             paddingVertical: 15,
             borderRadius: 12,
             width: "70%",
             alignItems: "center",
-            shadowColor: "#FF4D4D",
+            shadowColor: "#000",
             shadowOpacity: 0.3,
             shadowRadius: 8,
             elevation: 4,
             borderWidth: 1.5,
-            borderColor: "#FF4D4D",
+            borderColor: "#97723d",
             marginBottom: 35, // spacing before divider
           }}
         >
           <Text
             style={{
-               color: "#FF4D4D",
+              color: "#97723d",
               fontSize: 18,
               fontWeight: "bold",
             }}
