@@ -19,8 +19,7 @@ export default function Login() {
       style={{ flex: 1, backgroundColor: "#fff" }}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
-
-    <StatusBar hidden/>
+      <StatusBar hidden />
       <ScrollView
         contentContainerStyle={{
           flexGrow: 1,
@@ -135,7 +134,7 @@ export default function Login() {
         >
           <Text
             style={{
-               color: "#97723d",
+              color: "#97723d",
               fontSize: 18,
               fontWeight: "bold",
             }}

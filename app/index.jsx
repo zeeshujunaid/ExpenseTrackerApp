@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity,StatusBar } from "react-native";
+import { View, Text, Image, TouchableOpacity, StatusBar } from "react-native";
 import { useRouter } from "expo-router";
 
 export default function Index() {
@@ -7,12 +7,12 @@ export default function Index() {
     <View
       style={{
         flex: 1,
-        paddingTop:"40%",
+        paddingTop: "40%",
         alignItems: "center",
         paddingHorizontal: 25,
       }}
     >
-      <StatusBar hidden/>
+      <StatusBar hidden />
       {/* Logo */}
       <Image
         source={require("../assets/images/bgremoveLogo.png")}
@@ -34,8 +34,7 @@ export default function Index() {
           letterSpacing: 0.5,
         }}
       >
-        Welcome to{" "}
-        <Text style={{ color: "#97723d" }}>Expense</Text>
+        Welcome to <Text style={{ color: "#97723d" }}>Expense</Text>
       </Text>
 
       {/* Subtitle */}
@@ -54,7 +53,7 @@ export default function Index() {
 
       {/* Button */}
       <TouchableOpacity
-      onPress={()=>router.push("/Login")}
+        onPress={() => router.push("/Login")}
         style={{
           backgroundColor: "#97723d",
           paddingVertical: 14,

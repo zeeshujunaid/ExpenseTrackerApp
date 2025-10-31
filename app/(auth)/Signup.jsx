@@ -19,7 +19,7 @@ export default function Signup() {
       style={{ flex: 1, backgroundColor: "#fff" }}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
-        <StatusBar hidden/>
+      <StatusBar hidden />
       <ScrollView
         contentContainerStyle={{
           flexGrow: 1,
