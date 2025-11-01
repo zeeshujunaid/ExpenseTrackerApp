@@ -1,19 +1,21 @@
+import { LinearGradient } from "expo-linear-gradient";
+import { router } from "expo-router";
 import {
-  View,
-  StyleSheet,
+  Image,
   ScrollView,
+  StyleSheet,
   Text,
   TouchableOpacity,
-  Image,
+  View,
 } from "react-native";
 import MinimalExpenseChart from "../Components/Minimalcharts";
-import Barcharts from "../Components/Barcharts";
-import { LinearGradient } from "expo-linear-gradient";
+import ExpenseCard from "../Components/Expensecard";
+import Incomehistory from "../Components/Incomecard";
 
 export default function Homescreen() {
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      {/* 🔹 Navbar */}
+    <View style={styles.container}>
+      {/* 🔹 Navbar (Fixed at top) */}
       <LinearGradient colors={["#a52b2b", "#7a1c1c"]} style={styles.navbar}>
         <TouchableOpacity>
           <Image
@@ -24,7 +26,7 @@ export default function Homescreen() {
 
         <Text style={styles.username}>Welcome ZEESHAN</Text>
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => router.push("/Profilescreen")}>
           <Image
             source={require("../../assets/images/profile.webp")}
             style={styles.avatar}
@@ -32,43 +34,61 @@ export default function Homescreen() {
         </TouchableOpacity>
       </LinearGradient>
 
-      {/* 🔹 Chart Section */}
-      <View style={styles.topContainer}>
-        <MinimalExpenseChart />
-      </View>
+      {/* 🔹 Scrollable Content */}
+      <ScrollView
+        contentContainerStyle={{ paddingBottom: 80 }}
+        stickyHeaderIndices={[2]} // Yeh important line hai 👈
+      >
+        {/* 1️⃣ Chart Section */}
+        <View style={styles.topContainer}>
+          <MinimalExpenseChart />
+        </View>
 
-      {/* 🔹 Summary Cards */}
-      <View style={styles.cardRow}>
-        <View style={[styles.card, { backgroundColor: "#ffb703" }]}>
-          <Text style={styles.cardTitle}>Income</Text>
-          <Text style={styles.cardValue}>$12,450</Text>
-        </View>
-        <View style={[styles.card, { backgroundColor: "#e63946" }]}>
-          <Text style={styles.cardTitle}>Expense</Text>
-          <Text style={styles.cardValue}>$7,800</Text>
-        </View>
-        <View style={[styles.card, { backgroundColor: "#2a9d8f" }]}>
-          <Text style={styles.cardTitle}>Balance</Text>
-          <Text style={styles.cardValue}>$4,650</Text>
-        </View>
-      </View>
+        {/* 2️⃣ Gap / Spacing */}
+        <View style={{ height: 10 }} />
 
-      {/* 🔹 Bottom Analytics Section */}
-      {/* <View style={styles.bottomContainer}>
-        <Text style={styles.subHeading}>Monthly Analytics</Text>
-        <Barcharts />
-      </View> */}
-    </ScrollView>
+        {/* 3️⃣ Cards (Sticky Header) */}
+        <View style={styles.stickyCardContainer}>
+          <View style={styles.cardRow}>
+            <View style={[styles.card, { backgroundColor: "#ffb703" }]}>
+              <Text style={styles.cardTitle}>Income</Text>
+              <Text style={styles.cardValue}>$12,450</Text>
+            </View>
+            <View style={[styles.card, { backgroundColor: "#e63946" }]}>
+              <Text style={styles.cardTitle}>Expense</Text>
+              <Text style={styles.cardValue}>$7,800</Text>
+            </View>
+            <View style={[styles.card, { backgroundColor: "#2a9d8f" }]}>
+              <Text style={styles.cardTitle}>Balance</Text>
+              <Text style={styles.cardValue}>$4,650</Text>
+            </View>
+          </View>
+        </View>
+
+        {/* 4️⃣ Bottom Analytics */}
+        <View style={styles.bottomContainer}>
+          <View style={styles.expensehistory}>
+            <Text style={styles.subHeading}>EXPENSE HISTORY</Text>
+            <ExpenseCard />
+          </View>
+
+          <View style={styles.incomehistory}>
+            <Text style={styles.subHeading}>INCOME HISTORY</Text>
+            <Incomehistory />
+          </View>
+        </View>
+      </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flexGrow: 1,
+    flex: 1,
     backgroundColor: "#fff",
   },
 
-  // Navbar
+  // Navbar Fixed
   navbar: {
     width: "100%",
     backgroundColor: "#a52b2b",
@@ -79,11 +99,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderBottomLeftRadius: 25,
     borderBottomRightRadius: 25,
-    elevation: 4,
+    elevation: 5,
+    zIndex: 10,
   },
   username: {
     color: "#fff",
-    alignItems:"center",
     fontSize: 20,
     fontWeight: "bold",
   },
@@ -96,22 +116,26 @@ const styles = StyleSheet.create({
     borderColor: "#fff",
   },
 
-  // Top Chart
+  // Chart
   topContainer: {
-    width: "100%",
+    width: "90%",
     height: 250,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 5,
+    marginTop: 10,
   },
 
-  // Summary Cards
+  // Sticky Cards
+  stickyCardContainer: {
+    // backgroundColor: "#fff",
+    zIndex: -5,
+  },
   cardRow: {
     flexDirection: "row",
     justifyContent: "space-between",
     width: "90%",
     alignSelf: "center",
-    marginTop: -10,
+    marginVertical: 10,
   },
   card: {
     flex: 1,
@@ -132,24 +156,42 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 
-  // Bottom Section
+  // Bottom Analytics
   bottomContainer: {
-    width: "90%",
+    width: "100%",
     backgroundColor: "#fff",
     borderRadius: 20,
-    marginTop: 20,
+    marginTop: 10,
     padding: 20,
     elevation: 5,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    alignSelf: "center",
+    flexDirection: "column",
+    alignItems: "center",
   },
   subHeading: {
     fontSize: 18,
     fontWeight: "bold",
     color: "#000",
     marginBottom: 10,
+    paddingTop:10,
+  },
+  incomehistory: {
+    width: "100%",
+    backgroundColor: "#daf1deff",
+    borderRadius: 20,
+    marginTop: 10,
+    // padding: 20,
+    elevation: 5,
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  expensehistory: {
+    width: "100%",
+    backgroundColor: "#f0d0d0ff",
+    borderRadius: 20,
+    marginTop: 10,
+    // padding: 20,
+    elevation: 5,
+    flexDirection: "column",
+    alignItems: "center",
   },
 });

@@ -1,5 +1,5 @@
 import React from "react";
-import { View, ScrollView, Dimensions } from "react-native";
+import { View, Dimensions } from "react-native";
 import { LineChart } from "react-native-chart-kit";
 
 export default function MinimalExpenseChart() {
@@ -15,32 +15,31 @@ export default function MinimalExpenseChart() {
 
   return (
     <View style={{ alignItems: "center" }}>
-      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        <LineChart
-          data={data}
-          width={Dimensions.get("window").width * 1.1}
-          height={255}
-          withDots={false}
-          withInnerLines={false}
-          withOuterLines={false}
-          yAxisLabel=""
-          chartConfig={{
-            backgroundGradientFrom: "#fff",
-            backgroundGradientTo: "#fff",
-            color: () => "#8b5e34",
-            labelColor: () => "#000",
-            decimalPlaces: 0,
-            propsForBackgroundLines: {
-              strokeWidth: 0,
-            },
-          }}
-          bezier
-          style={{
-            borderRadius: 20,
-            backgroundColor: "#fff",
-          }}
-        />
-      </ScrollView>
+      <LineChart
+        data={data}
+        width={Dimensions.get("window").width + 50}
+        height={255}
+        withDots={false}
+        withInnerLines={false}
+        withOuterLines={false}
+        yAxisLabel=""
+        chartConfig={{
+          backgroundGradientFrom: "#fff",
+          backgroundGradientTo: "#fff",
+          color: () => "#8b5e34",
+          labelColor: () => "#000",
+          decimalPlaces: 0,
+          propsForBackgroundLines: {
+            strokeWidth: 0,
+          },
+        }}
+        bezier
+        style={{
+          borderRadius: 20,
+          backgroundColor: "#fff",
+          paddingLeft:60,
+        }}
+      />
     </View>
   );
 }
