@@ -129,7 +129,7 @@ export default function Login() {
             elevation: 4,
             borderWidth: 1.5,
             borderColor: "#97723d",
-            marginBottom: 35, // spacing before divider
+            marginBottom: 35, 
           }}
         >
           <Text

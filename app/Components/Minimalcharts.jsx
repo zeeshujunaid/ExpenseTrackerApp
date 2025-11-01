@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Dimensions, TouchableOpacity } from "react-native";
+import { View, ScrollView, Dimensions } from "react-native";
 import { LineChart } from "react-native-chart-kit";
 
 export default function MinimalExpenseChart() {
@@ -8,70 +8,39 @@ export default function MinimalExpenseChart() {
     datasets: [
       {
         data: [180, 250, 210, 300, 260, 290],
-        strokeWidth: 2,
+        strokeWidth: 4,
       },
     ],
   };
 
   return (
     <View style={{ alignItems: "center" }}>
-      {/* Dropdown + Search */}
-      <View
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: 10,
-          marginBottom: 10,
-        }}
-      >
-        <TouchableOpacity
-          style={{
-            borderWidth: 1,
-            borderColor: "#ccc",
-            borderRadius: 8,
-            paddingHorizontal: 12,
-            paddingVertical: 6,
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        <LineChart
+          data={data}
+          width={Dimensions.get("window").width * 1.1}
+          height={255}
+          withDots={false}
+          withInnerLines={false}
+          withOuterLines={false}
+          yAxisLabel=""
+          chartConfig={{
+            backgroundGradientFrom: "#fff",
+            backgroundGradientTo: "#fff",
+            color: () => "#8b5e34",
+            labelColor: () => "#000",
+            decimalPlaces: 0,
+            propsForBackgroundLines: {
+              strokeWidth: 0,
+            },
           }}
-        >
-          <Text style={{ fontSize: 14, color: "#333" }}>This Month ▼</Text>
-        </TouchableOpacity>
-        <Text style={{ fontSize: 18 }}>🔍</Text>
-      </View>
-
-      {/* Expense Text */}
-      <Text
-        style={{
-          fontSize: 34,
-          fontWeight: "700",
-          color: "#000",
-          marginBottom: 20,
-        }}
-      >
-        $301.95
-      </Text>
-
-      {/* Line Chart */}
-      <LineChart
-        data={data}
-        width={Dimensions.get("window").width - 80}
-        height={220}
-        withDots={false}
-        withInnerLines={false}
-        withOuterLines={false}
-        yAxisLabel=""
-        chartConfig={{
-          backgroundGradientFrom: "#fff",
-          backgroundGradientTo: "#fff",
-          decimalPlaces: 0,
-          color: (opacity = 1) => `rgba(0,0,0,${opacity})`,
-          labelColor: () => "#999",
-        }}
-        bezier
-        style={{
-          borderRadius: 12,
-        }}
-      />
+          bezier
+          style={{
+            borderRadius: 20,
+            backgroundColor: "#fff",
+          }}
+        />
+      </ScrollView>
     </View>
   );
 }
